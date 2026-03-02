@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Looks Travel and Tours - Luxury Travel Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+/* BODY & BACKGROUND */
+body{
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+  background-size: cover;
+  color:#222;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed; top:0; left:0; right:0; bottom:0;
+  background: rgba(30,30,30,0.5);
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:30px 10px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+  color:#ffd700;
+  font-family:'Pacifico', cursive;
+  font-size:2.5em;
+  text-shadow:0 0 15px #ffd700,0 0 30px #ffa500;
+}
+
+/* CONTAINER */
+.container{
+  width:90%;
+  max-width:1400px;
+  margin:30px auto;
+}
+
+/* GLOWING HEADINGS */
+h2{
+  text-align:center;
+  font-family:'Pacifico', cursive;
+  font-size:3em;
+  color:#ffd700;
+  text-shadow:0 0 15px #ffd700,0 0 30px #ffa500;
+  animation: glow 2s ease-in-out infinite alternate;
+  margin-bottom:50px;
+}
+h3{
+  font-size:2em;
+  font-weight:700;
+  color:#fff;
+  text-shadow:0 0 5px #fff,0 0 10px #ffd700;
+  text-align:center;
+  cursor:pointer;
+  margin-bottom:25px;
+}
+@keyframes glow{
+  0%{text-shadow:0 0 10px #ffd700,0 0 25px #ffa500;}
+  100%{text-shadow:0 0 20px #fff176,0 0 50px #ff8f00;}
+}
+
+/* SECTIONS */
+section{
+  background: rgba(40,40,40,0.85);
+  backdrop-filter: blur(15px);
+  border-radius:25px;
+  padding:40px 35px;
+  margin-bottom:50px;
+  border:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 15px 50px rgba(0,0,0,0.7);
+  color:#fff;
+  opacity:0;
+  transform: translateY(50px);
+  transition:all 1s ease;
+}
+section.visible{opacity:1; transform:translateY(0);}
+
+/* INFO BOXES */
+.info-box{
+  background: rgba(60,60,60,0.5);
+  padding:20px 25px;
+  border-radius:20px;
+  margin:15px 0;
+  cursor:pointer;
+  transition:0.4s;
+  display:flex; flex-direction:column;
+}
+.info-box:hover{background: rgba(100,100,100,0.65); box-shadow:0 10px 40px rgba(255,255,255,0.3);}
+.info-content{display:none; margin-top:12px; font-size:15px;}
+
+/* TESTIMONIALS */
+.testimonials{
+  display:flex; flex-wrap:wrap; gap:30px; justify-content:center;
+}
+.testimonial-box{
+  flex:1; min-width:280px; background: rgba(255,255,255,0.1);
+  padding:25px; border-radius:20px; color:#fff; text-align:center; font-style:italic;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4); transition:0.3s;
+}
+.testimonial-box:hover{transform:scale(1.03); box-shadow:0 15px 45px rgba(0,0,0,0.6);}
+.testimonial-author{margin-top:15px; font-weight:700; font-size:15px;}
+
+/* FORMS */
+.forms{
+  display:flex; flex-wrap:wrap; gap:30px; justify-content:center;
+}
+.form-box{
+  flex:1; min-width:320px;
+  padding:35px 25px; border-radius:25px;
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  position:relative;
+}
+#fbBox{background: linear-gradient(145deg,#1e3c72,#2a5298);}
+#waBox{background: linear-gradient(145deg,#2e7d32,#81c784);}
+.form-box img.logo{width:40px; position:absolute; top:20px; right:20px;}
+.form-group{position:relative; margin-bottom:20px;}
+input, select{
+  width:100%; padding:16px 18px; border-radius:12px; border:none;
+  background: rgba(255,255,255,0.15); color:#fff; font-size:16px; font-weight:700; outline:none; transition:0.3s;
+}
+input:focus, select:focus{background: rgba(255,255,255,0.3);}
+label{position:absolute; top:16px; left:18px; color: rgba(255,255,255,0.6); font-size:16px; pointer-events:none; font-weight:700; transition:0.3s;}
+input:focus + label, input:not(:placeholder-shown) + label, select:focus + label, select:not([value=""]) + label{
+  top:-10px; left:15px; font-size:12px; color:#ffd700; text-shadow:0 0 5px #fff;
+}
+.button-group{display:flex; justify-content:space-between; gap:10px; margin-top:25px; flex-wrap:wrap;}
+button{flex:1; padding:18px; border:none; border-radius:15px; font-weight:700; font-size:16px; cursor:pointer; color:#fff; transition:0.3s; text-shadow:0 0 5px #000;}
+#fbBtn{background:#1877f2;} #fbBtn:hover{transform:scale(1.05);}
+#searchFb{background:#64b5f6;} #searchFb:hover{transform:scale(1.05);}
+#waBtn{background:#25D366;} #waBtn:hover{transform:scale(1.05);}
+#searchWa{background:#00b894;} #searchWa:hover{transform:scale(1.05);}
+
+/* FOOTER */
+footer{
+  background: rgba(0,0,0,0.6); backdrop-filter: blur(15px);
+  padding:25px; text-align:center; border-radius:15px; color:#fff; font-size:16px; text-shadow:0 0 5px #000;
+}
+
+/* MEDIA */
+@media(max-width:1000px){.forms{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<header>Looks Travel and Tours</header>
+
+<div class="container">
+<h2>🌟 Luxury Travel Planner 🌟</h2>
+
+<!-- ABOUT US -->
+<section>
+<h3>About Us ✈️</h3>
+<p>Welcome to <strong>Looks Travel and Tours</strong>, your ultimate VIP travel companion. We specialize in creating bespoke journeys across Asia and worldwide. From luxury flights and 5-star hotels to private tours and exclusive experiences, we craft each trip with perfection. 🌏💼✨</p>
+<p>Contact: <strong>looks.travel.kr@gmail.com</strong>, <strong>kapilgautam367@gmail.com</strong> | WhatsApp: <strong>+9762219660</strong></p>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section>
+<h3>Why Choose Us? 🏆</h3>
+<ul>
+<li>🌟 Expert Travel Planners & Luxury Advisors</li>
+<li>💎 VIP Deals & Exclusive Packages</li>
+<li>🕐 24/7 Personalized Support</li>
+<li>🛏 Luxury Accommodation & Comfort Guaranteed</li>
+<li>🎫 Special Access to Events, Cruises & Private Tours</li>
+</ul>
+</section>
+
+<!-- LUXURY SERVICES -->
+<section>
+<h3>Luxury Services 🏨</h3>
+<div class="info-box" onclick="toggleInfo('hotels')">Hotels 🏨
+  <div class="info-content" id="hotels">Premium, scenic 5-star hotels. [Image Placeholder]</div>
+</div>
+<div class="info-box" onclick="toggleInfo('tours')">Private Tours 🚗
+  <div class="info-content" id="tours">Customized private tours with expert guides. [Image Placeholder]</div>
+</div>
+<div class="info-box" onclick="toggleInfo('experiences')">Exclusive Experiences ✨
+  <div class="info-content" id="experiences">Special experiences like cultural shows, cruises & events. [Image Placeholder]</div>
+</div>
+</section>
+
+<!-- FORMS FB & WA -->
+<section class="forms">
+<div class="form-box" id="fbBox">
+<img src="https://img.icons8.com/color/48/000000/facebook-new.png" class="logo"/>
+<h3>💬 Book via Facebook Messenger</h3>
+<form id="fbForm">
+<div class="form-group"><input type="text" id="fbName" placeholder=" " required><label>👤 Full Name</label></div>
+<div class="form-group"><input type="email" id="fbEmail" placeholder=" " required><label>📧 Email</label></div>
+<div class="form-group"><input type="text" id="fbDep" placeholder=" " required><label>🛫 Departure</label></div>
+<div class="form-group"><input type="text" id="fbDest" placeholder=" " required><label>🛬 Destination</label></div>
+<div class="form-group"><select id="fbTrip" required>
+<option value="">✈️ Trip Type</option>
+<option value="1">One Way 🛤️</option>
+<option value="2">Round Trip 🔄</option>
+<option value="3">Multi City 🌐</option>
+</select><label>Trip Type</label></div>
+<div class="form-group"><input type="date" id="fbDate1"><label>📅 Date 1</label></div>
+<div class="form-group" style="display:none;" id="fbDate2Group"><input type="date" id="fbDate2"><label>📅 Date 2</label></div>
+<div class="form-group" style="display:none;" id="fbDate3Group"><input type="date" id="fbDate3"><label>📅 Date 3</label></div>
+<div class="form-group"><input type="text" id="fbBudget" placeholder=" "><label>💰 Budget</label></div>
+<div class="form-group"><select id="fbTransit"><option value="">Transit Required</option><option value="Yes">Yes</option><option value="No">No</option></select><label>🚦 Transit</label></div>
+<div class="button-group">
+<button type="submit" id="fbBtn">Send to FB 💌</button>
+<button type="button" id="searchFb">Search Flights 🔍</button>
+</div>
+</form>
+</div>
+
+<div class="form-box" id="waBox">
+<img src="https://img.icons8.com/color/48/000000/whatsapp.png" class="logo"/>
+<h3>📲 Book via WhatsApp</h3>
+<form id="waForm">
+<div class="form-group"><input type="text" id="waName" placeholder=" " required><label>👤 Full Name</label></div>
+<div class="form-group"><input type="email" id="waEmail" placeholder=" " required><label>📧 Email</label></div>
+<div class="form-group"><input type="text" id="waDep" placeholder=" " required><label>🛫 Departure</label></div>
+<div class="form-group"><input type="text" id="waDest" placeholder=" " required><label>🛬 Destination</label></div>
+<div class="form-group"><select id="waTrip" required>
+<option value="">✈️ Trip Type</option>
+<option value="1">One Way 🛤️</option>
+<option value="2">Round Trip 🔄</option>
+<option value="3">Multi City 🌐</option>
+</select><label>Trip Type</label></div>
+<div class="form-group"><input type="date" id="waDate1"><label>📅 Date 1</label></div>
+<div class="form-group" style="display:none;" id="waDate2Group"><input type="date" id="waDate2"><label>📅 Date 2</label></div>
+<div class="form-group" style="display:none;" id="waDate3Group"><input type="date" id="waDate3"><label>📅 Date 3</label></div>
+<div class="form-group"><input type="text" id="waBudget" placeholder=" "><label>💰 Budget</label></div>
+<div class="form-group"><select id="waTransit"><option value="">Transit Required</option><option value="Yes">Yes</option><option value="No">No</option></select><label>🚦 Transit</label></div>
+<div class="button-group">
+<button type="submit" id="waBtn">Send to WhatsApp 💌</button>
+<button type="button" id="searchWa">Search Flights 🔍</button>
+</div>
+</form>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+<h3>Testimonials 🌟</h3>
+<div class="testimonials">
+<div class="testimonial-box">"Best travel planner ever! Everything was perfect." <div class="testimonial-author">- Sarah L.</div></div>
+<div class="testimonial-box">"VIP treatment from start to finish, highly recommend!" <div class="testimonial-author">- John K.</div></div>
+<div class="testimonial-box">"Luxury experiences beyond my expectations." <div class="testimonial-author">- Priya M.</div></div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+Emails: looks.travel.kr@gmail.com | kapilgautam367@gmail.com <br>
+WhatsApp: +9762219660
+</footer>
+
+<script>
+// Fade in sections
+const sections=document.querySelectorAll('section');
+window.addEventListener('scroll',()=>{
+  const scrollY=window.scrollY + window.innerHeight;
+  sections.forEach(s=>{
+    if(scrollY > s.offsetTop + 100){s.classList.add('visible');}
+  });
+});
+
+// Toggle info sections
+function toggleInfo(id){
+  const el=document.getElementById(id);
+  el.style.display=(el.style.display==='block')?'none':'block';
+}
+
+// Dynamic date fields
+['fb','wa'].forEach(prefix=>{
+  const tripSelect=document.getElementById(prefix+'Trip');
+  tripSelect.onchange=function(){
+    document.getElementById(prefix+'Date2Group').style.display='none';
+    document.getElementById(prefix+'Date3Group').style.display='none';
+    if(tripSelect.value==='2') document.getElementById(prefix+'Date2Group').style.display='block';
+    if(tripSelect.value==='3'){
+      document.getElementById(prefix+'Date2Group').style.display='block';
+      document.getElementById(prefix+'Date3Group').style.display='block';
+    }
+  };
+});
+
+// Build messages
+function fbMessage(){return `Luxury Travel Inquiry
+Name: ${document.getElementById('fbName').value}
+Email: ${document.getElementById('fbEmail').value}
+Departure: ${document.getElementById('fbDep').value}
+Destination: ${document.getElementById('fbDest').value}
+Trip Type: ${document.getElementById('fbTrip').value}
+Dates: ${document.getElementById('fbDate1').value} ${document.getElementById('fbDate2').value} ${document.getElementById('fbDate3').value}
+Budget: ${document.getElementById('fbBudget').value}
+Transit: ${document.getElementById('fbTransit').value}`;}
+
+function waMessage(){return `Luxury Travel Inquiry
+Name: ${document.getElementById('waName').value}
+Email: ${document.getElementById('waEmail').value}
+Departure: ${document.getElementById('waDep').value}
+Destination: ${document.getElementById('waDest').value}
+Trip Type: ${document.getElementById('waTrip').value}
+Dates: ${document.getElementById('waDate1').value} ${document.getElementById('waDate2').value} ${document.getElementById('waDate3').value}
+Budget: ${document.getElementById('waBudget').value}
+Transit: ${document.getElementById('waTransit').value}`;}
+
+// Buttons
+document.getElementById('fbBtn').onclick = function (e) {
+    e.preventDefault();
+    window.open(`https://m.me/looks.travel.kr?text=${encodeURIComponent(fbMessage())}`, '_blank');
+};
+document.getElementById('searchFb').onclick = function () {
+    const dep = encodeURIComponent(document.getElementById('fbDep').value);
+    const dest = encodeURIComponent(document.getElementById('fbDest').value);
+    window.open(`https://www.google.com/travel/flights?q=Flights%20from%20${dep}%20to%20${dest}`, '_blank');
+};
+document.getElementById('waBtn').onclick = function (e) {
+    e.preventDefault();
+    window.open(`https://wa.me/9762219660?text=${encodeURIComponent(waMessage())}`, '_blank');
+};
+document.getElementById('searchWa').onclick = function () {
+    const dep = encodeURIComponent(document.getElementById('waDep').value);
+    const dest = encodeURIComponent(document.getElementById('waDest').value);
+window.open(`https:www.google.com/travel/flights?q=Flights%20from%20${dep}%20to%20${dest}`,'_blank');};
+</script>
+</body>
+</html>
